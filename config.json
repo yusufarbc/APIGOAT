@@ -1,0 +1,12 @@
+{
+    "server":{
+        "rport":"3000",
+        "rhost":"localhost"
+    },
+    "database":{
+        "type":"postgre",
+        "host":"dsfa",
+        "user":"user",
+        "password":"sdfa"
+    }
+}
