@@ -1,1 +1,0 @@
-//Unrestricted Resource Consumption
