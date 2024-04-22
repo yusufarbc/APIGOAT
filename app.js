@@ -12,6 +12,12 @@ const indexRoutesHandler = require('./utils/indexRoutes');
 //indexRoutes middleware
 app.use('/',indexRoutesHandler);
 
+//API handler
+const apiHandler = require('./utils/apihandler');
+
+//API handler middleware
+app.use('/api', apiHandler(app));
+
 // other error middleware
 app.use((error, req, res, next) =>{
     res.status(error.status || 500);
