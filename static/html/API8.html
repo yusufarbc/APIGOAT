@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API8:2023</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <h1>API8:2023 - Security Misconfiguration</h1>
+    <hr>
+    <p>
+        APIs and the systems supporting them typically contain complex configurations, meant to make the APIs more customizable. Software and DevOps engineers can miss these configurations, or don't follow security best practices when it comes to configuration, opening the door for different types of attacks.
+    </p>
+
+    <div>
+        <h2>LAB Scenario</h2>
+        <hr>
+        <h5>Context:</h5>
+        <p>
+            A mobile application uses an API to communicate with a backend server.
+            The API utilizes a third-party library for handling user authentication.
+        </p>
+        <h5>Security Misconfigurations:</h5>
+        <ul>
+            <li>Default Credentials: The developers deploy the API using the default administrative credentials provided by the third-party authentication library. These credentials are likely well-known or easily guessable by attackers.</li>
+            <li>Insecure Communication: The API transmits sensitive data (like login credentials or access tokens) between the mobile app and the server over plain HTTP instead of HTTPS. This makes the data vulnerable to eavesdropping and interception.</li>
+            <li>Verbose Error Messages: The API returns detailed error messages in case of login failures. These messages might disclose sensitive information like internal server paths or database error codes, aiding attackers in crafting further exploits.</li>
+            <li>Unnecessary Services Exposed: The API exposes functionalities beyond its core purpose. For example, debugging endpoints or test environments might be left accessible, potentially providing attackers with additional avenues for unauthorized access.</li>
+        </ul>
+        <h5>Attack Scenario:</h5>
+        <ol>
+            <li>Initial Reconnaissance: An attacker, Mallory, intercepts network traffic between the mobile application and the server.</li>
+            <li>Default Credential Exploitation: Mallory recognizes the use of plain HTTP and potentially discovers the default credentials for the authentication library through online resources or brute-force attacks.</li>
+            <li>Unauthorized Access: Mallory uses the stolen credentials to gain unauthorized access to the API and potentially the backend server.</li>
+            <li>Exploiting Exposed Functionalities (Optional): If unnecessary services are exposed, Mallory might exploit them to gain a foothold in the system or escalate privileges for further attacks.</li>
+        </ol>
+        <h5>Impact:</h5>
+        <p>
+            Mallory's unauthorized access can lead to various consequences depending on the compromised system's functionalities:
+
+            Stealing user data: Mallory might be able to access user accounts and steal sensitive information like names, emails, or financial details.
+            Disrupting operations: Mallory could manipulate data or perform actions within the system, causing malfunctions or outages.
+            Launching further attacks: The compromised API could serve as a launching point for attacks on other internal systems within the network.        </p>
+        <h5>Mitigation:</h5>
+        <p>
+            Change Default Credentials: Always replace default credentials with strong, unique passwords or access tokens.
+            Enforce HTTPS: Implement secure communication protocols (HTTPS) to encrypt data transmission between the mobile app and the server.
+            Minimize Error Messages: Design error messages to be informative yet limited in technical details to avoid disclosing sensitive information.
+            Secure Exposed Services: Disable or remove unnecessary functionalities and APIs that are not critical for core operations. Regularly review and update security configurations to address potential vulnerabilities.       
+        </p> 
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API6:2023</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <h1>API6:2023 - Unrestricted Access to Sensitive Business Flows</h1>
+    <hr>
+    <p>
+        APIs vulnerable to this risk expose a business flow - such as buying a ticket, or posting a comment - without compensating for how the functionality could harm the business if used excessively in an automated manner. This doesn't necessarily come from implementation bugs.
+    </p>
+
+    <div>
+        <h2>LAB Scenario</h2>
+        <hr>
+        <h5>Context:</h5>
+        <p>
+            A travel booking platform offers an API for various travel booking functionalities:
+        </p>
+        <ul>
+            <li>GET /flights: Search for flights based on travel criteria. (Public function)</li>
+            <li>POST /bookings: Create a new flight booking. (Authenticated user function)</li>
+            <li>UT /bookings/{bookingID}: Update an existing booking. (Authorized user function)</li>
+        </ul>
+
+        <h5>Unrestricted Access and Business Logic Abuse:</h5>
+        <p>
+            The API allows booking flight tickets but lacks safeguards to prevent abuse of the booking workflow. There are no restrictions on the number of bookings a user can create or modify within a specific timeframe.
+        </p>
+        <h5>Attack Scenario:</h5>
+        <ol>
+            <li>Attacker Observation: An attacker, Mallory, observes the travel booking platform and understands the general booking process.</li>
+            <li>Business Logic Exploitation: Mallory realizes there are no limits on booking creation. She can exploit this logic to manipulate flight availability and potentially disrupt the platform's operations.</li>
+            <li>Mass Booking and Cancellation: Mallory develops a script to automate booking a large number of seats on popular flights close to the departure date. This could significantly reduce seat availability for legitimate users.</li>
+            <li>Cancellation at the Last Minute: Shortly before the flight, Mallory cancels all the mass bookings she made. Airlines typically release cancelled seats back for sale at a discounted price.</li>
+        </ol>
+
+        <h5>Impact:</h5>
+        <p>
+            Mallory's actions can artificially inflate demand and limit seat availability for genuine travelers seeking flights.
+            Last-minute cancellations can cause airlines to lose revenue as they might have to discount seats to fill the flight.
+            The platform's reputation could be damaged due to unreliable booking experiences for legitimate users.
+        </p>
+        <h5>Mitigation:</h5>
+        <p>
+            Implement controls to restrict the number of bookings a user can create within a specific timeframe.
+            Analyze booking behavior for anomalies and suspicious patterns. This could help identify attempts to mass-book and cancel flights.
+            Consider introducing additional verification steps for bookings exceeding a certain threshold.        </p> 
+    </div>
+
+</body>
+</html>

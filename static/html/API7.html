@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API7:2023</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <h1>API7:2023 - Server Side Request Forgery</h1>
+    <hr>
+    <p>
+        Server-Side Request Forgery (SSRF) flaws can occur when an API is fetching a remote resource without validating the user-supplied URI. This enables an attacker to coerce the application to send a crafted request to an unexpected destination, even when protected by a firewall or a VPN.
+    </p>
+
+    <div>
+        <h2>LAB Scenario</h2>
+        <hr>
+        <h5>Context:</h5>
+        <p>
+            A weather forecasting company offers an API to retrieve weather data for different locations: GET /weather?location={city}
+        </p>
+        <h5>Vulnerable API Design:</h5>
+        <p>
+            The API endpoint blindly trusts the user-provided location parameter {city}.
+            The server fetches weather data from an internal weather service based on the requested location.
+            No validation or restrictions are placed on the location parameter.    
+        </p>
+        <h5>Attack Scenario:</h5>
+        <p>
+        <ol>
+            <li>Attacker Discovery: An attacker, Mallory, discovers the weather API and its functionalities.</li>
+            <li>SSRF Vulnerability Identification: Through testing and observation, Mallory recognizes the API might be susceptible to SSRF attacks because it fetches data based on user input.</li>
+            <li>Crafting Malicious Request: Mallory constructs a request with the location parameter {city} set to a URL pointing to an internal server resource of the weather forecasting company, for instance, a vulnerability scanner or a resource that exposes sensitive information.</li>
+        </ol>   
+        </p>
+        <h5>Impact:</h5>
+        <p>
+            If the SSRF vulnerability exists, the weather forecasting company's server will unknowingly make a request to the internal URL specified by Mallory. This could potentially allow Mallory to:
+
+            Scan Internal Network:
+        
+            The internal server response might reveal information about the company's internal network infrastructure or applications.
+            Exfiltrate Sensitive Data: If the internal URL points to a vulnerable resource, Mallory might be able to steal sensitive data like user information or company secrets.
+            Launch Denial-of-Service (DoS) Attack: Repeated SSRF requests targeting critical internal resources could overload the server and cause a DoS attack, disrupting normal operations.       
+        </p>
+        <h5>Mitigation:</h5>
+        <p>
+            implement validation on the location parameter. Restrict allowed characters and prevent users from specifying URLs or internal network paths.
+            Consider whitelisting specific locations or using a predefined list of valid locations to limit the scope of data retrieval.
+            Sanitize the location parameter to remove potentially malicious code or characters that could be used for SSRF attacks.        
+        </p> 
+    </div>
+
+</body>
+</html>

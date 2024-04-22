@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API5:2023</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <h1>API5:2023 - Broken Function Level Authorization</h1>
+    <hr>
+    <p>
+        Complex access control policies with different hierarchies, groups, and roles, and an unclear separation between administrative and regular functions, tend to lead to authorization flaws. By exploiting these issues, attackers can gain access to other users’ resources and/or administrative functions.
+    </p>
+
+    <div>
+        <h2>LAB Scenario</h2>
+        <hr>
+        <h5>Context:</h5>
+        <p>
+            A library management system offers an API for various functionalities:
+
+            GET /books: Retrieve a list of all books. (Public function)
+            POST /books: Add a new book. (Admin-only function)
+            PUT /books/{bookID}: Update an existing book. (Authorized user function)
+            DELETE /books/{bookID}: Delete a book. (Admin-only function)
+        </p>
+        <h5>Broken Authorization:</h5>
+        <p>
+            The API relies solely on the HTTP method (GET, POST, PUT, DELETE) to determine authorization for specific functions.
+            It fails to verify the user's role or permissions before performing actions.
+        </p>
+        <h5>Attack Scenario:</h5>
+        <ol>
+            <li>Regular User Observation: A regular user, Ben, is familiar with using the API to view the book list (GET /books).</li>
+            <li>Function Identification: Ben notices a pattern in the API endpoints and suspects there might be functionality beyond viewing books.</li>
+            <li>Unauthorized Access Attempt: Ben tries modifying the request method to POST /books with book information in the request body. If Broken Function Level Authorization exists, Ben might be able to add a new book to the library system without any authorization checks.</li>
+        </ol>
+        <h5>Impact:</h5>
+        <p>
+            Ben could exploit this vulnerability to add unauthorized or malicious content to the library system's book collection. This could disrupt library operations or potentially expose other users to inappropriate content.        </p>
+        <h5>Mitigation:</h5>
+        <p>
+            Implement proper authorization checks on each API endpoint. These checks should verify the user's role or permissions before granting access to specific functionalities.
+            Don't solely rely on HTTP methods for authorization. Utilize mechanisms like access tokens or roles associated with user accounts to restrict unauthorized access to administrative functions like adding or deleting books.        </p> 
+    </div>
+
+</body>
+</html>
