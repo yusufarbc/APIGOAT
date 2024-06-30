@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
 });
 
 // Simulate an undocumented API endpoint (unknown purpose and functionality)
-app.get('/unknown', (req, res) => {
+router.get('/unknown', (req, res) => {
     // Placeholder for potentially sensitive data or functionalities (unknown due to lack of documentation)
     res.send({ message: 'This is an undocumented API endpoint' });
 });

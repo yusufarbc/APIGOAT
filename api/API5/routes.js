@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const department = require('./controllers/product');
+
+router.get('/', (req, res, next) => {
+    res.status(200);
+    res.json({
+        message:"working"
+    });
+});
 
 // Simulate a book database (replace with actual database interaction)
 let books = [

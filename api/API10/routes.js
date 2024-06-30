@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 
 router.get('/', (req, res, next) => {
-    res.status(404);
+    res.status(200);
     res.json({
         message:"working"
     });
@@ -17,7 +17,7 @@ let weatherData = {
   };
   
   // Vulnerable endpoint (no data validation or sanitization)
-  app.get('/weather', (req, res) => {
+router.get('/weather', (req, res) => {
     res.send(weatherData);
 });
 
