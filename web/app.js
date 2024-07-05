@@ -19,7 +19,11 @@ app.use('/',routes);
 app.use((req, res, next) => {
     const error = new Error('Not Found');
     error.status = 404; 
-    next(error);
+    if(error){
+        next(error);
+    } else {
+        res.sendFile(path.join(__dirname, './404.html'));
+    }
 });
 
 // other error middleware
@@ -33,12 +37,7 @@ app.use((error, req, res, next) =>{
 });
 
 
-<<<<<<< Updated upstream
-app.listen(8007, ()=> {
-    console.log("listening on port 8007");
-=======
-app.listen(8006, ()=> {
-    console.log("listening on port 8006");
->>>>>>> Stashed changes
+app.listen(8001, ()=> {
+    console.log("listening on port 8001");
 });
 

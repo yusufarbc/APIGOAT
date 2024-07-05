@@ -2,45 +2,120 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
-router.get('/', (req, res, next) => {
-    res.status(200);
-    res.json({
-        message:"working"
-    });
+router.get('/', installer, (req, res, next) => {
+  res.status(200);
+  res.json({
+      message:"API2 is working, run to /logins path"
+  });
 });
 
-// Dummy user data (replace with proper user database)
-const users = {
-    alice: { username: 'alice', password: 'password123' }, // Plain text password - BAD!
-    bob: { username: 'bob', password: '12345' }, // Plain text password - BAD!
-  };
-  
-// Vulnerable login endpoint (Broken Authentication)
-router.post('/login', (req, res) => {
-    const { username, password } = req.body;
-  
-    // No validation or secure password hashing!
-    const user = users[username];
-  
-    if (!user || user.password !== password) {
-      return res.status(401).send('Invalid credentials');
-    }
-  
-    // Simulate generating a token (replace with secure JWT generation)
-    const token = 'fake-token-for-' + username;
-    res.send({ token });
+router.get('/logins', logins, (req, res, next) => {
+res.status(404);
+res.json({
+    message:"API2 is working"
 });
-  
-  // Hypothetical protected API endpoint (assuming successful login)
-router.get('/protected', (req, res) => {
-    const authHeader = req.headers.authorization;
-  
-    // No token validation! (placeholder for actual token verification)
-    if (!authHeader || authHeader !== 'Bearer fake-token') {
-      return res.status(401).send('Unauthorized');
-    }
-  
-    res.send('This is protected data!');
 });
 
+
+
+// Vunerable login endpoint (Broken Authentication)l
+router.post('/signup', (req, res, next) => {
+Account.find({email:req.body.email})
+.exec()
+.then( account=> {
+    if (account.length >= 1) {
+        return res.status(409).json({
+            message: 'Mail Exist'
+        });
+    } else {
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+        
+            if (err) {
+                return res.status(500).json({
+                    message: "unexpected error",
+                    error: err
+                });
+    
+            } else {
+                const account = new Account({_id: new mongoose.Types.ObjectId, name:req.body.name, email: req.body.email, password: hash});
+                
+                account
+                .save()
+                .then( (result) => {
+                    res.status(201).json({
+                        message: "auth succesfull",
+                        result: result
+                    });
+                })
+                .catch( (err) => {
+                    res.status(500).json({
+                        message: "error",
+                        error: err
+                    });
+                });
+            }
+        });
+    }
+
+})
+.catch( (err) => {
+    console.error(err);
+    res.status(500).json({
+        message:"unexpected error",
+        error: err
+    })
+})
+});
+
+router.post("/login", (req, res, next) => {
+Account.find({ email: req.body.email })
+.exec()
+.then( (accounts) => {
+    if (accounts.length <1) {
+        return res.status(404).json({
+            message: "Mail not found, account doesn't exist",
+            message: 'Auth Failed'
+        });
+    } 
+    bcrypt.compare(req.body.password, accounts[0].password, (err, result) => {
+        if(err) {
+            return res.status(401).json({
+                message: 'auth failed'
+            });
+        }
+
+        if (result) {
+            const token = jwt.sign({
+                email: accounts[0].email,
+                Id: accounts[0]._id
+            }, "api2", 
+            {
+                expiresIn: "1h"
+            })
+
+            return res.status(200).json({
+                message: 'Auth succesfull',
+                token: token
+            });
+        }
+
+        res.status(401).json({
+            message: 'Auth failed'
+        });
+    })
+})
+.catch();
+});
+
+// Hypothetical protected API endpoint (assuming successful login)
+router.get('/protected',checkAuth, (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  // No token validation! (placeholder for actual token verification)
+  if (!authHeader || authHeader !== 'Bearer fake-token') {
+    return res.status(401).send('Unauthorized');
+  }
+
+  res.send('This is protected data!');
+});
 module.exports = router;

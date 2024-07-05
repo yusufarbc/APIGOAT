@@ -33,7 +33,12 @@ app.use((error, req, res, next) =>{
 });
 
 
+<<<<<<< Updated upstream
 app.listen(8009, ()=> {
     console.log("listening on port 8009");
+=======
+app.listen(8008, ()=> {
+    console.log("listening on port 8008");
+>>>>>>> Stashed changes
 });
 

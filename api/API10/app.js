@@ -33,7 +33,7 @@ app.use((error, req, res, next) =>{
 });
 
 
-app.listen(8010, ()=> {
+app.listen(process.env.PORT , ()=> {
     console.log("listening on port 8010");
 });
 
