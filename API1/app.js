@@ -5,10 +5,7 @@ const dotenv = require("dotenv");
 
 dotenv.config({ path:"../config.env" });
 
-const config = require('../config.env')
-
 const mongose = require('mongoose');
-console.log(process.env.mongoDBURL);
 mongose.connect(process.env.mongoDBURL);
 
 

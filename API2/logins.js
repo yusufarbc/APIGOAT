@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
     while(true){
         await sleep(9000);  
             axios
-            .post('http://localhost/api/api2/login', user1)
+            .post('http://localhost:'+String(process.env.PORT_API2)+'/login', user1)
             .then(res => {
                 console.log("user1 login");
             })
@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
             });
 
             axios
-            .post('http://localhost/api/api2/login', user2)
+            .post('http://localhost:'+String(process.env.PORT_API2)+'/login', user2)
             .then(res => {
                 console.log("user2 login");
             })

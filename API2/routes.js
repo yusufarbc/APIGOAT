@@ -2,23 +2,32 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
+const Account = require('./Account');
+const checkAuth = require('./check-auth');
+const logins = require('./logins');
+const installer = require('./installer');
+
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+
+// index endpoint runs installer.js
 router.get('/', installer, (req, res, next) => {
   res.status(200);
   res.json({
-      message:"API2 is working, run to /logins path"
+      message:"API2 is working, run to /logins path with a GET request"
   });
 });
 
+// logins endpoint sends login requests as clear-text
 router.get('/logins', logins, (req, res, next) => {
 res.status(404);
 res.json({
-    message:"API2 is working"
+    message:"login requests sending..."
 });
 });
 
-
-
-// Vunerable login endpoint (Broken Authentication)l
+// signup endpoint creates an account
 router.post('/signup', (req, res, next) => {
 Account.find({email:req.body.email})
 .exec()
@@ -67,6 +76,7 @@ Account.find({email:req.body.email})
 })
 });
 
+// Vunerable login endpoint (Broken Authentication)l
 router.post("/login", (req, res, next) => {
 Account.find({ email: req.body.email })
 .exec()

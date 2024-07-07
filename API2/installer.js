@@ -16,7 +16,7 @@ const user2 = {
 module.exports = (req, res, next) => {
     try {
         axios
-            .post('http://localhost/api/api2/signup', user1)
+            .post('http://localhost:'+String(process.env.PORT_API2)+'/signup', user1)
             .then(res => {
                 console.log("user1 ceated");
             })
@@ -25,7 +25,7 @@ module.exports = (req, res, next) => {
             });
 
             axios
-            .post('http://localhost/api/api2/signup', user2)
+            .post('http://localhost:'+String(process.env.PORT_API2)+'/signup', user2)
             .then(res => {
                 console.log("user2  ceated");
             })

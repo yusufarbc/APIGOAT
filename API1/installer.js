@@ -37,7 +37,7 @@ const file3 = {
 module.exports = (req, res, next) => {
     try {
         axios
-            .post('http://localhost/api/api1/signup', user1)
+            .post('http://localhost'+String(process.env.PORT_API2)+'/signup', user1)
             .then(res => {
                 console.log("user1 ceated");
             })
@@ -46,7 +46,7 @@ module.exports = (req, res, next) => {
             });
 
             axios
-            .post('http://localhost/api/api1/signup', user2)
+            .post('http://localhost:'+String(process.env.PORT_API2)+'/signup', user2)
             .then(res => {
                 console.log("user2 cannot ceated");
             })
@@ -55,7 +55,7 @@ module.exports = (req, res, next) => {
             });
 
             axios
-            .post('http://localhost/api/api1/files', file1)
+            .post('http://localhost:'+String(process.env.PORT_API2)+'/files', file1)
             .then(res => {
                 console.log("file1 ceated");
             })
@@ -64,7 +64,7 @@ module.exports = (req, res, next) => {
             });
 
             axios
-            .post('http://localhost/api/api1/files', file2)
+            .post('http://localhost:'+String(process.env.PORT_API2)+'/files', file2)
             .then(res => {
                 console.log("file2 ceated");
             })
@@ -73,7 +73,7 @@ module.exports = (req, res, next) => {
             });
 
             axios
-            .post('http://localhost/api/api1/files', file3)
+            .post('http://localhost:'+String(process.env.PORT_API2)+'/files', file3)
             .then(res => {
                 console.log("file2 ceated");
             })
