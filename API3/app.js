@@ -2,9 +2,12 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const path = require('path');
 
-const mongose = require('mongoose');
-mongose.connect();
+const dotenv = require("dotenv");
 
+dotenv.config({ path:"../config.env" });
+
+const mongose = require('mongoose');
+mongose.connect(process.env.mongoDBURL);
 
 const app = express();
 
@@ -32,8 +35,7 @@ app.use((error, req, res, next) =>{
     });
 });
 
-
-app.listen(8003, ()=> {
-    console.log("listening on port 8003");
+app.listen(process.env.PORT_API3, ()=> {
+    console.log("listening on port", process.env.PORT_API3);
 });
 

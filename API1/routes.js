@@ -91,7 +91,7 @@ router.post("/login", (req, res, next) => {
                 const token = jwt.sign({
                     email: accounts[0].email,
                     Id: accounts[0]._id
-                }, "api1", 
+                }, process.env.JWT_KEY1, 
                 {
                     expiresIn: "1h"
                 })

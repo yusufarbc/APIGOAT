@@ -26,16 +26,16 @@ const user3 = {
 module.exports = (req, res, next) => {
     try {
         axios
-            .post('http://localhost:3000/api/api3/signup', user1)
+            .post('http://localhost:'+String(process.env.PORT_API3)+'/signup', user1)
             .then(res => {
                 console.log("user1 ceated");
             })
             .catch(err => {
-                console.log("user1 ceated");
+                console.error(err);
             });
 
             axios
-            .post('http://localhost:3000/api/api3/signup', user2)
+            .post('http://localhost:'+String(process.env.PORT_API3)+'/signup', user2)
             .then(res => {
                 console.log("user2 ceated");
             })
@@ -44,7 +44,7 @@ module.exports = (req, res, next) => {
             });
 
             axios
-            .post('http://localhost:3000/api/api3/signup', user3)
+            .post('http://localhost:'+String(process.env.PORT_API3)+'/signup', user3)
             .then(res => {
                 console.log("user3 ceated");
             })

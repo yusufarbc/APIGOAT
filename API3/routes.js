@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const installer = require('./installer');
-const checkAuth = require('./middlewares/check-auth');
+const checkAuth = require('./check-auth');
 const Account = require('./Account');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// index endpoint runs installer.js
 router.get('/', installer, (req, res, next) => {
     res.status(200);
     res.json({
@@ -15,26 +16,25 @@ router.get('/', installer, (req, res, next) => {
     });
 });
 
-// Required admin priveleged
-router.get('/users', checkAuth,  (req, res, next) => {
-  isAdmin = req.userData.isAdmin;
-  if (!isAdmin) {
+// Require admin priveleged, list users 
+router.get('/users', checkAuth, (req, res, next) => {
+    isAdmin = req.userData.isAdmin;
+    if (!isAdmin) {
     return res.status(403).send('Forbidden');
-  }
-  else {
-    Account.find({}).
-      then( (result => {
+    }
+    else {
+        Account.find({}).
+        then( (result => {
         result = JSON.stringify(result);
-        res.status(200).json(result)
+        return res.status(200).json(result)
       }))
       .catch( (err) => {
-        res.status(500).json({error:err});
+        return res.status(500).json({error:err});
       })
   }
-  
 });
 
-
+// Require only authantication not admin privileges
 router.get('/users/:userId', checkAuth, (req, res, next) => {
   const userId = req.params.userId;
   const user = users[userId];
@@ -47,7 +47,7 @@ router.get('/users/:userId', checkAuth, (req, res, next) => {
   res.send(user);
 });
 
-
+// signup endpoint creates an account
 router.post('/signup', (req, res, next) => {
   Account.find({email:req.body.email})
   .exec()
@@ -96,6 +96,7 @@ router.post('/signup', (req, res, next) => {
   })
 });
 
+// login endpoint gives a jwt token
 router.post("/login", (req, res, next) => {
   Account.find({ email: req.body.email })
   .exec()
@@ -117,7 +118,7 @@ router.post("/login", (req, res, next) => {
               const token = jwt.sign({
                   email: accounts[0].email,
                   isAdmin: accounts[0].isAdmin
-              }, "api3", 
+              }, process.env.JWT_KEY3, 
               {
                   expiresIn: "1h"
               })

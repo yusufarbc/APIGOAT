@@ -98,7 +98,7 @@ Account.find({ email: req.body.email })
             const token = jwt.sign({
                 email: accounts[0].email,
                 Id: accounts[0]._id
-            }, "api2", 
+            }, process.env.JWT_KEY2, 
             {
                 expiresIn: "1h"
             })
