@@ -2,8 +2,11 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const path = require('path');
 
+import { PORT_WEB, mongoDBURL } from '../config.js';
+
+
 const mongose = require('mongoose');
-mongose.connect('mongodb+srv://yusuftalhaarabaci:qpEitl3p7ZLq41do@appgoat.aogk0vv.mongodb.net/?retryWrites=true&w=majority&appName=appgoat');
+mongose.connect(mongoDBURL);
 
 
 const app = express();
@@ -37,7 +40,7 @@ app.use((error, req, res, next) =>{
 });
 
 
-app.listen(8001, ()=> {
-    console.log("listening on port 8001");
+app.listen(PORT_WEB, ()=> {
+    console.log("listening on port", PORT_WEB);
 });
 
