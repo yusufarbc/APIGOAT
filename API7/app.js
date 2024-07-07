@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const path = require('path');
 
-const mongose = require('mongoose');
-mongose.connect('mongodb+srv://yusuftalhaarabaci:qpEitl3p7ZLq41do@appgoat.aogk0vv.mongodb.net/?retryWrites=true&w=majority&appName=appgoat');
+const dotenv = require("dotenv");
+dotenv.config({ path:"../config.env" });
 
+const mongose = require('mongoose');
+mongose.connect(process.env.mongoDBURL);
 
 const app = express();
 
@@ -33,12 +35,7 @@ app.use((error, req, res, next) =>{
 });
 
 
-<<<<<<< Updated upstream
-app.listen(8007, ()=> {
-    console.log("listening on port 8007");
-=======
-app.listen(8006, ()=> {
-    console.log("listening on port 8006");
->>>>>>> Stashed changes
+app.listen(process.env.PORT_API7, ()=> {
+    console.log("listening on port",process.env.PORT_API7);
 });
 
