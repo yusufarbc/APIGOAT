@@ -4,9 +4,10 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const Book = require('./book');
-const installer = require('./middlewares/installer');
-const checkAuth = require('./middlewares/check-auth');
+const installer = require('./installer');
+const checkAuth = require('./check-auth');
 
+//index endpoint: runs installer
 router.get('/', installer, (req, res, next) => {
     res.status(200);
     res.json({
@@ -14,9 +15,8 @@ router.get('/', installer, (req, res, next) => {
     });
 });
 
-  
-
-  router.get('/books', (req, res, next) => {
+//books endpoit: gets all books
+router.get('/books', (req, res, next) => {
     Book
         .find()
         .select('name author')
@@ -43,6 +43,7 @@ router.get('/', installer, (req, res, next) => {
         });
 });
 
+//books endpoint: create a book
 router.post('/books', checkAuth,  (req, res, next) => {
     console.log("request to product")
     const book = new Book({
@@ -69,15 +70,15 @@ router.post('/books', checkAuth,  (req, res, next) => {
         });
 });
 
+//books endpoint: gets a book
 router.get('/books/:bookId', (req, res, next) => {
-    console.log("get product request")
-    const id = req.params.productId;
+    const id = req.params.bookId;
     Book.findById(id)
         .exec()
         .then(doc => {
             console.log(doc);
             if (doc) {
-               res.status(200).json({doc}); 
+               res.status(200).json({book: doc}); 
             } else {
                 res.status(404).json({message: 'No valid entry found for provided id'});
             }
@@ -89,6 +90,7 @@ router.get('/books/:bookId', (req, res, next) => {
         });
 });
 
+//books endpoint: patchs a boook
 router.patch('/books/:bookId', (req, res, next) => {
     console.log("patch book request")
     const id = req.params.bookId;
@@ -109,7 +111,5 @@ router.patch('/books/:bookId', (req, res, next) => {
         });
     });
 });
-
-
 
 module.exports = router;

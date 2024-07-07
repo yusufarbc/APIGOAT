@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const productShema = mongoose.Schema({
-    id:mongoose.Schema.Types.ObjectId,
+    id: mongoose.Schema.Types.ObjectId,
     name: {type: String, required: true},
     author: { type: String, required: true }
 });
