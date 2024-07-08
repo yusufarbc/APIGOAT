@@ -43,8 +43,6 @@ This project is open for any process for submitting pull requests to us.
 
 * **Yusuf Talha ARABACI** - *Cyber Security Engineer* - [yusufarbc](https://github.com/yusufarbc)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
 ## License
 
 This project is licensed under the GNU General Public License (GPL) License
