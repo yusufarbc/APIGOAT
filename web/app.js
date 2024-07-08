@@ -1,19 +1,16 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const path = require('path');
-
-import { PORT_WEB, mongoDBURL } from '../config.js';
-
-
-const mongose = require('mongoose');
-mongose.connect(mongoDBURL);
+const dotenv = require("dotenv");
 
 
+dotenv.config({ path:"../config.env" });
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname+'/public'));
 
 const routes = require('./routes');
 app.use('/',routes);
@@ -40,7 +37,7 @@ app.use((error, req, res, next) =>{
 });
 
 
-app.listen(PORT_WEB, ()=> {
-    console.log("listening on port", PORT_WEB);
+app.listen(process.env.PORT_WEB, ()=> {
+    console.log("listening on port", process.env.PORT_WEB);
 });
 

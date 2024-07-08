@@ -1,52 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API10:2023</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-    <h1>API10:2023 - Unsafe Consumption of APIs</h1>
-    <hr>
-    <p>
-        Developers tend to trust data received from third-party APIs more than user input, and so tend to adopt weaker security standards. In order to compromise APIs, attackers go after integrated third-party services instead of trying to compromise the target API directly.
-    </p>
 
-    <div>
-        <h2>LAB Scenario</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API10:2023</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+
+
+          <div class="col-3 px-3 bg-light position-fixed" id="sticky-sidebar">
+        <img style="max-width: 100%" src="/logo.png" alt="apigoat"> 
+        <nav>
+          <a href="/" aria-expanded="false" id="owasp10_2023"
+            style="padding: 20% 10% 10 10">
+            <i class="fas fa-flag"></i>
+            OWASP API TOP 10 2023
+          </a>
+  
+  
+          <ul class="list-sidebar bg-default" id="OWASP10_2023">
+            <li>
+              <a href="api1" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API1:<br> Broken Object Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="api2" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API2:<br> Broken Authentication
+              </a>
+            </li>
+            <li>
+              <a href="/api3" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API3:<br> Broken Object Property Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api4" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API4:<br> Unrestricted Resource Consumption
+              </a>
+            </li>
+            <li>
+              <a href="/api5" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API5:<br> Broken Function Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api6" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API6:<br> Broken Function Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api7" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API7:<br> Server-Side Request Forgery
+              </a>
+            </li>
+            <li>
+              <a href="/api8" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API8:<br> Security Misconfiguration
+              </a>
+            </li>
+            <li>
+              <a href="/api9" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API9:<br> Improper Inventory Management
+              </a>
+            </li>
+            <li>
+              <a href="/api10" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API10:<br> Unsafe Consumption of APIs
+              </a>
+  
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="col offset-3" id="main">
+        <h1>API10:2023 - Unsafe Consumption of APIs</h1>
         <hr>
-        <h5>Context:</h5>
         <p>
+          Developers tend to trust data received from third-party APIs more than user input, and so tend to adopt weaker
+          security standards. In order to compromise APIs, attackers go after integrated third-party services instead of
+          trying to compromise the target API directly.
+        </p>
+
+        <div class="container-fluid bg-light">
+          <h2>LAB Scenario</h2>
+
+          <div style="float: right;margin: 30px;" class="btn-container">
+            <a href="http://localhost:8010" class="btn btn-primary">API 10</a>
+          </div>
+
+          <hr>
+          <h5>Context:</h5>
+          <p>
             A mobile weather application retrieves weather data from a third-party weather API.
             The mobile application code directly parses the JSON response received from the weather API.
-        </p>
-        <h5>Unsafe Consumption::</h5>
-        <p>
-            The mobile application fails to validate or sanitize the data received from the weather API.        </p>
-        <h5>Attack Scenario:</h5>
-        <ol>
+          </p>
+          <h5>Unsafe Consumption::</h5>
+          <p>
+            The mobile application fails to validate or sanitize the data received from the weather API. </p>
+          <h5>Attack Scenario:</h5>
+          <ol>
             <li>API Compromise: An attacker gains temporary control over the weather API server.</li>
-            <li>Malicious Data Injection: The attacker injects malicious code (like JavaScript) into the weather data response sent to the mobile application.</li>
-        </ol>
-        <h5>Impact:</h5>
-        <p>
-            When the mobile application parses the unvalidated response, the injected code might be executed within the application's environment. This could lead to various consequences depending on the attacker's intent:
-        </p>
+            <li>Malicious Data Injection: The attacker injects malicious code (like JavaScript) into the weather data
+              response sent to the mobile application.</li>
+          </ol>
+          <h5>Impact:</h5>
+          <p>
+            When the mobile application parses the unvalidated response, the injected code might be executed within the
+            application's environment. This could lead to various consequences depending on the attacker's intent:
+          </p>
+          <ul>
+            <li>Data Theft: The injected code could steal user data like location information or login credentials from
+              the mobile app.</li>
+            <li>Denial-of-Service (DoS): The code could overload the mobile app with resource-intensive tasks, causing
+              it to crash or become unresponsive.</li>
+            <li>Further Attacks: The attacker might use the compromised mobile app as a launching point for attacks on
+              other systems on the user's device. </li>
+          </ul>
+        </div>
+        
+        <div class="container-fluid bg-light">
+
+        <h2>Mitigation</h2>
+        <hr>
         <ul>
-            <li>Data Theft: The injected code could steal user data like location information or login credentials from the mobile app.</li>
-            <li>Denial-of-Service (DoS): The code could overload the mobile app with resource-intensive tasks, causing it to crash or become unresponsive.</li>
-            <li>Further Attacks: The attacker might use the compromised mobile app as a launching point for attacks on other systems on the user's device. </li>
+          <li>
+            <p>
+              <b>API Client Libraries: </b> Utilize well-maintained client libraries provided by the weather API provider. These libraries often handle data parsing and validation securely.
+            </p>
+          </li>
+          <li>
+            <p>
+              <b>Input Validation:</b>  Implement mechanisms within the mobile application to validate the data received from the weather API. This could involve checking data types, expected formats, and removing unexpected elements.
+            </p>
+          </li>
+          <li>
+            <p>
+              <b>Input Validation:</b>  Implement mechanisms within the mobile application to validate the data received from the weather API. This could involve checking data types, expected formats, and removing unexpected elements.
+            </p>
+          </li>
+          <li>
+            <p>
+              <b>Regular Updates:</b> Keep the mobile application and its dependencies updated to address potential vulnerabilities in the code or third-party libraries used.
+            </p>
+          </li>
         </ul>
-        <h5>Mitigation:</h5>
-        <p>
-            API Client Libraries: Utilize well-maintained client libraries provided by the weather API provider. These libraries often handle data parsing and validation securely.
-            Input Validation: Implement mechanisms within the mobile application to validate the data received from the weather API. This could involve checking data types, expected formats, and removing unexpected elements.
-            Data Sanitization: Sanitize the received data to remove potentially harmful code or characters before using it within the application.
-            Regular Updates: Keep the mobile application and its dependencies updated to address potential vulnerabilities in the code or third-party libraries used.      
-        </p> 
+      </div>
+      </div>
     </div>
+  </div>
 
 </body>
+
 </html>

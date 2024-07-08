@@ -1,56 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API8:2023</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/bootstrap.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API8:2023</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <h1>API8:2023 - Security Misconfiguration</h1>
-    <hr>
-    <p>
-        APIs and the systems supporting them typically contain complex configurations, meant to make the APIs more customizable. Software and DevOps engineers can miss these configurations, or don't follow security best practices when it comes to configuration, opening the door for different types of attacks.
-    </p>
+  <div class="container-fluid">
+    <div class="row">
+  <div class="col-3 px-3 bg-light position-fixed" id="sticky-sidebar">
+    <img style="max-width: 100%" src="/logo.png" alt="apigoat"> 
+    <nav>
+      <a href="/" aria-expanded="false" id="owasp10_2023"
+        style="padding: 20% 10% 10 10">
+        <i class="fas fa-flag"></i>
+        OWASP API TOP 10 2023
+      </a>
 
-    <div>
-        <h2>LAB Scenario</h2>
+
+      <ul class="list-sidebar bg-default" id="OWASP10_2023">
+        <li>
+          <a href="api1" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API1:<br> Broken Object Level Authorization
+          </a>
+        </li>
+        <li>
+          <a href="api2" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API2:<br> Broken Authentication
+          </a>
+        </li>
+        <li>
+          <a href="/api3" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API3:<br> Broken Object Property Level Authorization
+          </a>
+        </li>
+        <li>
+          <a href="/api4" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API4:<br> Unrestricted Resource Consumption
+          </a>
+        </li>
+        <li>
+          <a href="/api5" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API5:<br> Broken Function Level Authorization
+          </a>
+        </li>
+        <li>
+          <a href="/api6" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API6:<br> Broken Function Level Authorization
+          </a>
+        </li>
+        <li>
+          <a href="/api7" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API7:<br> Server-Side Request Forgery
+          </a>
+        </li>
+        <li>
+          <a href="/api8" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API8:<br> Security Misconfiguration
+          </a>
+        </li>
+        <li>
+          <a href="/api9" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API9:<br> Improper Inventory Management
+          </a>
+        </li>
+        <li>
+          <a href="/api10" class="sidebar-list-items">
+            <i class="fas fa-bug"></i>
+            API10:<br> Unsafe Consumption of APIs
+          </a>
+
+      </ul>
+    </nav>
+  </div>
+
+      <div class="col offset-3" id="main">
+        <h1>API8:2023 - Security Misconfiguration</h1>
         <hr>
-        <h5>Context:</h5>
         <p>
-            A mobile application uses an API to communicate with a backend server.
-            The API utilizes a third-party library for handling user authentication.
+          APIs and the systems supporting them typically contain complex configurations, meant to make the APIs more
+          customizable. Software and DevOps engineers can miss these configurations, or don't follow security best
+          practices when it comes to configuration, opening the door for different types of attacks.
+
+          <ul>
+            <li>
+              <b>Default Credentials:</b> The developers deploy the API using the default administrative credentials provided
+              by the third-party authentication library. These credentials are likely well-known or easily guessable by
+              attackers.
+            </li>
+            <li>
+              <b>Insecure Communication:</b> The API transmits sensitive data (like login credentials or access tokens)
+              between the mobile app and the server over plain HTTP instead of HTTPS. This makes the data vulnerable to
+              eavesdropping and interception.
+            </li>
+            <li>
+              <b>Verbose Error Messages:</b> The API returns detailed error messages in case of login failures. These
+              messages might disclose sensitive information like internal server paths or database error codes, aiding
+              attackers in crafting further exploits.
+            </li>
+            <li>
+              <b>Unnecessary Services Exposed</b>: The API exposes functionalities beyond its core purpose. For example,
+              debugging endpoints or test environments might be left accessible, potentially providing attackers with
+              additional avenues for unauthorized access.
+            </li>
+          </ul>
         </p>
-        <h5>Security Misconfigurations:</h5>
-        <ul>
-            <li>Default Credentials: The developers deploy the API using the default administrative credentials provided by the third-party authentication library. These credentials are likely well-known or easily guessable by attackers.</li>
-            <li>Insecure Communication: The API transmits sensitive data (like login credentials or access tokens) between the mobile app and the server over plain HTTP instead of HTTPS. This makes the data vulnerable to eavesdropping and interception.</li>
-            <li>Verbose Error Messages: The API returns detailed error messages in case of login failures. These messages might disclose sensitive information like internal server paths or database error codes, aiding attackers in crafting further exploits.</li>
-            <li>Unnecessary Services Exposed: The API exposes functionalities beyond its core purpose. For example, debugging endpoints or test environments might be left accessible, potentially providing attackers with additional avenues for unauthorized access.</li>
-        </ul>
-        <h5>Attack Scenario:</h5>
-        <ol>
-            <li>Initial Reconnaissance: An attacker, Mallory, intercepts network traffic between the mobile application and the server.</li>
-            <li>Default Credential Exploitation: Mallory recognizes the use of plain HTTP and potentially discovers the default credentials for the authentication library through online resources or brute-force attacks.</li>
-            <li>Unauthorized Access: Mallory uses the stolen credentials to gain unauthorized access to the API and potentially the backend server.</li>
-            <li>Exploiting Exposed Functionalities (Optional): If unnecessary services are exposed, Mallory might exploit them to gain a foothold in the system or escalate privileges for further attacks.</li>
-        </ol>
-        <h5>Impact:</h5>
-        <p>
-            Mallory's unauthorized access can lead to various consequences depending on the compromised system's functionalities:
 
-            Stealing user data: Mallory might be able to access user accounts and steal sensitive information like names, emails, or financial details.
-            Disrupting operations: Mallory could manipulate data or perform actions within the system, causing malfunctions or outages.
-            Launching further attacks: The compromised API could serve as a launching point for attacks on other internal systems within the network.        </p>
-        <h5>Mitigation:</h5>
-        <p>
-            Change Default Credentials: Always replace default credentials with strong, unique passwords or access tokens.
-            Enforce HTTPS: Implement secure communication protocols (HTTPS) to encrypt data transmission between the mobile app and the server.
-            Minimize Error Messages: Design error messages to be informative yet limited in technical details to avoid disclosing sensitive information.
-            Secure Exposed Services: Disable or remove unnecessary functionalities and APIs that are not critical for core operations. Regularly review and update security configurations to address potential vulnerabilities.       
-        </p> 
+        <div class="container-fluid bg-light">
+          <h2>LAB Scenario</h2>
+
+          <div style="float: right;margin: 30px;" class="btn-container">
+            <a href="http://localhost:8008" class="btn btn-primary">API 8</a>
+          </div>
+
+          
+          <hr>
+          <h5>Context:</h5>
+          <p>
+            A social media platform offers an API for developers to integrate social features like sharing or user profiles into their applications.
+          </p>
+          <h5>Security Misconfigurations:</h5>
+          The API implements a permissive CORS policy that allows requests from all origins (*). This means any web application can access the API resources without any restrictions.
+          <h5>Attack Scenario:</h5>
+          Cross-Site Scripting (XSS) Attack:
+          <ol>
+            <li>
+              Malicious Website: An attacker creates a malicious website that embeds an image tag pointing to a resource on the social media platform's API.
+            </li>
+            <li>
+              Unsuspecting User: A user visits the attacker's website. Their browser automatically makes a request to the social media platform's API to fetch the image.
+            </li>
+            <li>
+              Exploiting Permissive CORS: Due to the permissive CORS policy, the browser doesn't block the request, even though it originates from a different domain (the attacker's website).
+            </li>
+            <li>
+              Stealing User Data: If the requested resource is user-specific (e.g., profile picture), the attacker's website might be able to access the user's data embedded within the response. This could include the user's profile information or even their access token.
+            </li>
+            <li>
+              Further Attacks: With the stolen data (like access token), the attacker might be able to impersonate the user and perform unauthorized actions on the social media platform.
+            </li>
+          </ol>
+
+          <h5>Impact:</h5>
+          <p>
+            A permissive CORS policy can lead to various security risks:
+            <ul>
+              <li>
+                Data Breaches: Attackers can exploit it to steal sensitive user data exposed through the API.
+              </li>
+              <li>
+                Account Takeovers: Stolen access tokens or credentials could be used to hijack user accounts.
+              </li>
+              <li>
+                Malicious Functionality: Attackers might embed API calls in their websites to perform unauthorized actions on behalf of unsuspecting users. </p>
+              </li>
+            </ul>       
+
+        </div>
+
+        <div class="container-fluid bg-light">
+          <h2>Mitigation</h2>
+          <hr>
+          <ul>
+            <li>
+              <p>
+                <b>Change Default Credentials:</b> Always replace default credentials with strong, unique passwords or access tokens.
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Enforce HTTPS: </b>Implement secure communication protocols (HTTPS) to encrypt data transmission between the mobile app and the server.
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Minimize Error Messages:</b> Design error messages to be informative yet limited in technical details to avoid disclosing sensitive information.
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Secure Exposed Services:</b>S Disable or remove unnecessary functionalities and APIs that are not critical for core operations. Regularly review and update security configurations to address potential vulnerabilities.
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Implement a Restrictive CORS Policy:</b>Configure the API to only allow requests from authorized origins associated with legitimate applications.
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Use Origin Whitelisting:</b> Specify a list of allowed domains that can access the API resources.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-
+  </div>
 </body>
+
 </html>

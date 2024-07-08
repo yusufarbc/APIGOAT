@@ -1,42 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../css/navbar-fixed-left.min.css">
     <title>APIGOAT</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+      integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+      integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+      crossorigin="anonymous"
+    ></script>
 </head>
 <body>
-    <div>
-        <h1>APIGOAT</h1>
-        <hr>
-        <h2>
-            Welcome to APIGOAT project!
-        </h2>
-        <p>
-            APIGOAT is a rest api project contains OWASP API TOP TEN 2023 vulnerabilities. Developed by OWASP Bursa Technical University Student Chapter.
-        </p>  
-    </div>
+
+    <div class="container-fluid">
+        <div class="row">
 
 
-    <div>
-        <h1>APIGOAT LABS</h1>
-        <h5>The OWASP (Open Web Application Security Project) API Top 10 is a valuable resource for understanding and mitigating security risks in APIs (Application Programming Interfaces). The 2023 edition outlines the ten most critical API security risks:</h1>
-        <ul>
-            <li><a href="API1">Broken Object Level Authorization (API1:2023):</a> This occurs when controls fail to restrict access to specific API resources based on the user's permissions.</li>
-            <li><a href="API2">Broken Authentication (API2:2023):</a> Weak authentication mechanisms like predictable credentials or lack of multi-factor authentication can be exploited by attackers.</li>
-            <li><a href="API3">Broken Object Property Level Authorization (API3:2023):</a> APIs might grant access to an entire object when only specific properties within that object should be accessible.</li>
-            <li><a href="API4">Unrestricted Resource Consumption (API4:2023):</a> Absence of limits on API requests can lead to Denial-of-Service (DoS) attacks or excessive resource usage.</li>
-            <li><a href="API5">roken Function Level Authorization (API5:2023):</a>B APIs may not properly restrict access to specific functionalities based on user privileges.</li>
-            <li><a href="API6">Unrestricted Access to Sensitive Business Flows (API6:2023):</a> APIs might expose sensitive functionalities like financial transactions or data manipulation without proper authorization.</li>
-            <li><a href="API7">Server-Side Request Forgery (SSRF) (API7:2023):</a> Attackers can manipulate an API to trick the server into making unauthorized requests to external systems.</li>
-            <li><a href="API8">Security Misconfiguration (API8:2023):</a> Insecure default configurations, outdated software, or overly permissive settings can leave APIs vulnerable.</li>
-            <li><a href="API9">Improper Inventory Management (API9:2023):</a> Lack of awareness or control over all APIs within an organization can create security blind spots.</li>
-            <li><a href="API10">Unsafe Consumption of APIs (API10:2023):</a> Client-side applications may not properly validate or sanitize data received from APIs, leading to vulnerabilities.</li>
-        </ul>
-        <p>By understanding these top API security risks, developers and security professionals can prioritize efforts to implement robust API security measures.  For more details and guidance, you can refer to the OWASP API Security Top 10 resource https://owasp.org/www-project-api-security/.</p>
-    </div>
+             <div class="col-3 px-3 bg-light position-fixed" id="sticky-sidebar">
+        <img style="max-width: 100%" src="/logo.png" alt="apigoat"> 
+        <nav>
+          <a href="/" aria-expanded="false" id="owasp10_2023"
+            style="padding: 20% 10% 10 10">
+            <i class="fas fa-flag"></i>
+            OWASP API TOP 10 2023
+          </a>
+  
+  
+          <ul class="list-sidebar bg-default" id="OWASP10_2023">
+            <li>
+              <a href="api1" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API1:<br> Broken Object Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="api2" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API2:<br> Broken Authentication
+              </a>
+            </li>
+            <li>
+              <a href="/api3" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API3:<br> Broken Object Property Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api4" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API4:<br> Unrestricted Resource Consumption
+              </a>
+            </li>
+            <li>
+              <a href="/api5" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API5:<br> Broken Function Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api6" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API6:<br> Broken Function Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api7" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API7:<br> Server-Side Request Forgery
+              </a>
+            </li>
+            <li>
+              <a href="/api8" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API8:<br> Security Misconfiguration
+              </a>
+            </li>
+            <li>
+              <a href="/api9" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API9:<br> Improper Inventory Management
+              </a>
+            </li>
+            <li>
+              <a href="/api10" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API10:<br> Unsafe Consumption of APIs
+              </a>
+  
+          </ul>
+        </nav>
+      </div>
+
+            <div class="col offset-3" id="main">
+                <h1>
+                    Welcome to APIGOAT project!
+                </h1>
+                <hr>
+                <p>
+                    APIGOAT is a rest api project contains OWASP API TOP TEN 2023 vulnerabilities. Developed by OWASP Bursa Technical University Student Chapter.
+                </p>  
+
+                <div class="bg-light">
+                    <h1>APIGOAT LABS</h1>
+
+                    <p>The OWASP (Open Web Application Security Project) API Top 10 is a valuable resource for understanding and mitigating security risks in APIs (Application Programming Interfaces). The 2023 edition outlines the ten most critical API security risks:</p>
+                    <ul>
+                        <li><a href="API1">Broken Object Level Authorization (API1:2023):</a> This occurs when controls fail to restrict access to specific API resources based on the user's permissions.</li>
+                        <li><a href="API2">Broken Authentication (API2:2023):</a> Weak authentication mechanisms like predictable credentials or lack of multi-factor authentication can be exploited by attackers.</li>
+                        <li><a href="API3">Broken Object Property Level Authorization (API3:2023):</a> APIs might grant access to an entire object when only specific properties within that object should be accessible.</li>
+                        <li><a href="API4">Unrestricted Resource Consumption (API4:2023):</a> Absence of limits on API requests can lead to Denial-of-Service (DoS) attacks or excessive resource usage.</li>
+                        <li><a href="API5">Broken Function Level Authorization (API5:2023):</a> APIs may not properly restrict access to specific functionalities based on user privileges.</li>
+                        <li><a href="API6">Unrestricted Access to Sensitive Business Flows (API6:2023):</a> APIs might expose sensitive functionalities like financial transactions or data manipulation without proper authorization.</li>
+                        <li><a href="API7">Server-Side Request Forgery (SSRF) (API7:2023):</a> Attackers can manipulate an API to trick the server into making unauthorized requests to external systems.</li>
+                        <li><a href="API8">Security Misconfiguration (API8:2023):</a> Insecure default configurations, outdated software, or overly permissive settings can leave APIs vulnerable.</li>
+                        <li><a href="API9">Improper Inventory Management (API9:2023):</a> Lack of awareness or control over all APIs within an organization can create security blind spots.</li>
+                        <li><a href="API10">Unsafe Consumption of APIs (API10:2023):</a> Client-side applications may not properly validate or sanitize data received from APIs, leading to vulnerabilities.</li>
+                    </ul>
+                    <p>By understanding these top API security risks, developers and security professionals can prioritize efforts to implement robust API security measures.  For more details and guidance, you can refer to the OWASP API Security Top 10 resource <a href="https://owasp.org/www-project-api-security/">https://owasp.org/www-project-api-security/</a>.</p>
+                </div>
+            </div>
+        </div>
+   
 
 </body>
 </html>

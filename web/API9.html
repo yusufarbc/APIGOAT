@@ -1,67 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API9:2023</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-    <h1>API9:2023 - Improper Inventory Management</h1>
-    <hr>
-    <p>
-        APIs tend to expose more endpoints than traditional web applications, making proper and updated documentation highly important. A proper inventory of hosts and deployed API versions also are important to mitigate issues such as deprecated API versions and exposed debug endpoints.
-    </p>
 
-    <div>
-        <h2>LAB Scenario</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API9:2023</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      
+      <div class="col-3 px-3 bg-light position-fixed" id="sticky-sidebar">
+        <img style="max-width: 100%" src="/logo.png" alt="apigoat"> 
+        <nav>
+          <a href="/" aria-expanded="false" id="owasp10_2023"
+            style="padding: 20% 10% 10 10">
+            <i class="fas fa-flag"></i>
+            OWASP API TOP 10 2023
+          </a>
+  
+  
+          <ul class="list-sidebar bg-default" id="OWASP10_2023">
+            <li>
+              <a href="api1" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API1:<br> Broken Object Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="api2" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API2:<br> Broken Authentication
+              </a>
+            </li>
+            <li>
+              <a href="/api3" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API3:<br> Broken Object Property Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api4" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API4:<br> Unrestricted Resource Consumption
+              </a>
+            </li>
+            <li>
+              <a href="/api5" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API5:<br> Broken Function Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api6" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API6:<br> Broken Function Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api7" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API7:<br> Server-Side Request Forgery
+              </a>
+            </li>
+            <li>
+              <a href="/api8" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API8:<br> Security Misconfiguration
+              </a>
+            </li>
+            <li>
+              <a href="/api9" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API9:<br> Improper Inventory Management
+              </a>
+            </li>
+            <li>
+              <a href="/api10" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API10:<br> Unsafe Consumption of APIs
+              </a>
+  
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col offset-3" id="main">
+        <h1>API9:2023 - Improper Inventory Management</h1>
         <hr>
-        <h5>Context:</h5>
         <p>
+          APIs tend to expose more endpoints than traditional web applications, making proper and updated documentation
+          highly important. A proper inventory of hosts and deployed API versions also are important to mitigate issues
+          such as deprecated API versions and exposed debug endpoints.
+        </p>
+
+        <div class="container-fluid bg-light">
+          <h2>LAB Scenario</h2>
+
+          <div style="float: right;margin: 30px;" class="btn-container">
+            <a href="http://localhost:8009" class="btn btn-primary">API 9</a>
+          </div>
+
+          <hr>
+          <h5>Context:</h5>
+          <p>
             A large organization develops and uses various internal APIs for different departments.
             There's no centralized registry or documentation for all APIs within the organization.
-        </p>
-        <h5>Improper Inventory Management:</h5>
-        <p>
-            The organization lacks a proper inventory of APIs. Many APIs are undocumented, and their existence is only known to a small group within specific departments.
+          </p>
+          <h5>Improper Inventory Management:</h5>
+          <p>
+            The organization lacks a proper inventory of APIs. Many APIs are undocumented, and their existence is only
+            known to a small group within specific departments.
             No clear ownership or lifecycle management is established for these APIs.
-        </p>
-        <h5>Attack Scenario-1:</h5>
-        <ol>
-            <li>Internal Actor Negligence (Unintentional): A developer working on a new project stumbles upon an undocumented API endpoint while investigating the network traffic. Due to lack of documentation, the purpose and security posture of the API are unclear.</li>
-            <li>Accidental Misuse: Without proper understanding, the developer decides to integrate with the undocumented API in their new project. This could lead to unintended consequences: 
-                <ul>
-                    <li>Data Exposure: The undocumented API might expose sensitive data that the new project shouldn't access.</li>
-                    <li>Broken Functionalities: Integrating with an outdated or unsupported API could lead to compatibility issues or unexpected behavior in the new project.</li>
-                </ul>
+          </p>
+          <h5>Attack Scenario:</h5>
+          <ol>
+            <li>Internal Actor Negligence (Unintentional): A developer working on a new project stumbles upon an
+              undocumented API endpoint while investigating the network traffic. Due to lack of documentation, the
+              purpose and security posture of the API are unclear.</li>
+            <li>Accidental Misuse: Without proper understanding, the developer decides to integrate with the
+              undocumented API in their new project. This could lead to unintended consequences:
+              <ul>
+                <li>Data Exposure: The undocumented API might expose sensitive data that the new project shouldn't
+                  access.</li>
+                <li>Broken Functionalities: Integrating with an outdated or unsupported API could lead to compatibility
+                  issues or unexpected behavior in the new project.</li>
+              </ul>
             </li>
-        </ol>
+          </ol>
 
-        <h5>Attack Scenario-2:</h5>
-        <ol>
-            <li>Internal Actor Negligence (Malicious): An employee with malicious intent discovers an old, forgotten API endpoint through network scanning or social engineering. There's no record of this API, and its functionalities are unknown.</li>
-            <li>Exploiting a Shadow API: The malicious actor experiments with the forgotten API and discovers a vulnerability due to its outdated nature. They exploit this vulnerability to gain unauthorized access to sensitive data or functionalities within the organization's systems.</li>
-        </ol>
-
-        <h5>Impact:</h5>
-        <p>
+          <h5>Impact:</h5>
+          <p>
             Improper inventory management can lead to several negative consequences:
-        </p>
-        <ul>
-            <li>Security Risks: Undocumented APIs create blind spots, making them vulnerable to exploitation by attackers. These attackers might be external or even malicious actors within the organization.</li>
-            <li>Integration Issues: Integrating with undocumented APIs can lead to development delays and compatibility problems in new projects.</li>
-            <li>Compliance Issues: Lack of API inventory makes it difficult to demonstrate compliance with security regulations or internal governance policies.</li>
-        </ul>
-               
-        <h5>Mitigation:</h5>
-        <p>
-            Implement a centralized API registry to document all APIs, including their purpose, functionalities, ownership, and access controls.
-            Enforce clear API lifecycle management practices, including development, deployment, versioning, deprecation, and retirement of APIs.
-            Foster a culture of API awareness within the organization. Encourage developers to document their APIs and report any undocumented APIs they encounter.
-            Regularly review and update the API inventory to ensure its accuracy and completeness.
-        </p> 
-    </div>
+          </p>
+          <ul>
+            <li>Security Risks: Undocumented APIs create blind spots, making them vulnerable to exploitation by
+              attackers. These attackers might be external or even malicious actors within the organization.</li>
+            <li>Integration Issues: Integrating with undocumented APIs can lead to development delays and compatibility
+              problems in new projects.</li>
+            <li>Compliance Issues: Lack of API inventory makes it difficult to demonstrate compliance with security
+              regulations or internal governance policies.</li>
+          </ul>
+        </div>
+
+        <div class="container-fluid bg-light">
+          <h2>Mitigation</h2>
+          <hr>
+          <ul>
+            <li>
+              <p>
+                Implement a centralized API registry to document all APIs, including their purpose, functionalities, ownership, and access controls.
+              </p>
+            </li>
+            <li>
+              <p>
+                Enforce clear API lifecycle management practices, including development, deployment, versioning, deprecation, and retirement of APIs.
+              </p>
+            </li>
+            <li>
+              <p>
+                Foster a culture of API awareness within the organization. Encourage developers to document their APIs and report any undocumented APIs they encounter.
+              </p>
+            </li>
+            <li>
+              <p>
+                Regularly review and update the API inventory to ensure its accuracy and completeness.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
 
 </body>
+
 </html>

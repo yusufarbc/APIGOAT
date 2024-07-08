@@ -1,48 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API3:2023</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-    <h1>API3:2023 - Broken Object Property Level Authorization</h1>
-    <hr>
-    <p>
-        This category combines API3:2019 Excessive Data Exposure and API6:2019 - Mass Assignment, focusing on the root cause: the lack of or improper authorization validation at the object property level. This leads to information exposure or manipulation by unauthorized parties.
-    </p>
 
-    <div>
-        <h2>LAB Scenario</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API3:2023</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+
+
+      <div class="col-3 px-3 bg-light position-fixed" id="sticky-sidebar">
+        <img style="max-width: 100%" src="/logo.png" alt="apigoat"> 
+        <nav>
+          <a href="/" aria-expanded="false" id="owasp10_2023"
+            style="padding: 20% 10% 10 10">
+            <i class="fas fa-flag"></i>
+            OWASP API TOP 10 2023
+          </a>
+  
+  
+          <ul class="list-sidebar bg-default" id="OWASP10_2023">
+            <li>
+              <a href="api1" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API1:<br> Broken Object Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="api2" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API2:<br> Broken Authentication
+              </a>
+            </li>
+            <li>
+              <a href="/api3" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API3:<br> Broken Object Property Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api4" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API4:<br> Unrestricted Resource Consumption
+              </a>
+            </li>
+            <li>
+              <a href="/api5" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API5:<br> Broken Function Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api6" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API6:<br> Broken Function Level Authorization
+              </a>
+            </li>
+            <li>
+              <a href="/api7" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API7:<br> Server-Side Request Forgery
+              </a>
+            </li>
+            <li>
+              <a href="/api8" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API8:<br> Security Misconfiguration
+              </a>
+            </li>
+            <li>
+              <a href="/api9" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API9:<br> Improper Inventory Management
+              </a>
+            </li>
+            <li>
+              <a href="/api10" class="sidebar-list-items">
+                <i class="fas fa-bug"></i>
+                API10:<br> Unsafe Consumption of APIs
+              </a>
+  
+          </ul>
+        </nav>
+      </div>
+
+
+      <div class="col offset-3" id="main">
+        <h1>API3:2023 - Broken Object Property Level Authorization</h1>
         <hr>
-        <h5>Context:</h5>
         <p>
-            A social media application has an API endpoint to retrieve user profiles: GET /users/{userID}
-            The API endpoint returns a JSON object containing various user properties like name, email address, public posts, and a private field - "isAdmin" (indicating admin privileges).
+          This category combines API3:2019 Excessive Data Exposure and API6:2019 - Mass Assignment, focusing on the root
+          cause: the lack of or improper authorization validation at the object property level. This leads to
+          information exposure or manipulation by unauthorized parties.
         </p>
-        <h5>Broken Authorization:</h5>
-        <p>
+
+        <div class="container-fluid bg-light">
+          <h2>LAB Scenario</h2>
+
+          <div style="float: right;margin: 30px;" class="btn-container">
+            <a href="http://localhost:8003" class="btn btn-primary">API 3</a>
+          </div>
+
+          <hr>
+          <h5>Context:</h5>
+          <p>
+            A social media application has an API endpoint to retrieve user profiles: GET /users/{userID}
+            The API endpoint returns a JSON object containing various user properties like name, email address, public
+            posts, and a private field - "isAdmin" (indicating admin privileges).
+          </p>
+          <h5>Broken Authorization:</h5>
+          <p>
             The API endpoint returns all user properties regardless of the requesting user's permissions.
             There's no check to see if the requesting user has the privilege to access the "isAdmin" property.
-        </p>
-        <h5>Attack Scenario:</h5>
-        <p>
+          </p>
+          <h5>Attack Scenario:</h5>
+          <p>
             Regular User Observation:
             A regular user, Ben, observes how the social media application displays user profiles.
-            Property Identification: Ben notices that the profile URLs follow a pattern and might include the "isAdmin" property in the response though it's not displayed on the user interface.
-            Unauthorized Access Attempt: Ben constructs a URL like GET /users/{adminID} replacing {adminID} with an administrator's ID. If Broken Object Property Level Authorization exists, the API response will include the "isAdmin" property, revealing whether that user has admin privileges.
-        </p>
-        <h5>Impact:</h5>
-        <p>
-            Ben can potentially identify administrator accounts within the social media platform. This information could be used for further attacks like social engineering or exploiting vulnerabilities specific to administrator accounts.        </p>
-        <h5>Mitigation:</h5>
-        <p>
-            The API endpoint should implement authorization checks on individual properties within the user object.
-            It should only return properties that the requesting user has permission to access. In this case, the "isAdmin" property should be omitted from the response for non-admin users.       
-        </p> 
-    </div>
+            Property Identification: Ben notices that the profile URLs follow a pattern and might include the "isAdmin"
+            property in the response though it's not displayed on the user interface.
+            Unauthorized Access Attempt: Ben constructs a URL like GET /users/{adminID} replacing {adminID} with an
+            administrator's ID. If Broken Object Property Level Authorization exists, the API response will include the
+            "isAdmin" property, revealing whether that user has admin privileges.
+          </p>
+          <h5>Impact:</h5>
+          <p>
+            Ben can potentially identify administrator accounts within the social media platform. This information could
+            be used for further attacks like social engineering or exploiting vulnerabilities specific to administrator
+            accounts. </p>
 
+        </div>
+
+        <div class="container-fluid bg-light">
+          <h2>Mitigation</h2>
+          <hr>
+          <ul>
+            <li>
+              <p>
+                The API endpoint should implement authorization checks on individual properties within the user object.
+              </p>
+            </li>
+            <li>
+              <p>
+                It should only return properties that the requesting user has permission to access. In this case, the "isAdmin" property should be omitted from the response for non-admin users.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

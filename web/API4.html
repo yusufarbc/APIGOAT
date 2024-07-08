@@ -1,50 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API4:2023</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/bootstrap.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API4:2023</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <h1>API4:2023 - Unrestricted Resource Consumption</h1>
-    <hr>
-    <p>
-        Satisfying API requests requires resources such as network bandwidth, CPU, memory, and storage. Other resources such as emails/SMS/phone calls or biometrics validation are made available by service providers via API integrations, and paid for per request. Successful attacks can lead to Denial of Service or an increase of operational costs.
-    </p>
+  <div class="container-fluid">
+    <div class="row">
 
-    <div>
-        <h2>LAB Scenario</h2>
-        <hr>
-        <h5>Context:</h5>
-        <p>
-            An e-commerce platform offers an API endpoint to search for products: GET /products?search={query}
-            The API allows users to specify search parameters like query text and filters.
-            There's no limit on the number of products returned in the search results.
-            Pagination (splitting results into pages) is not implemented.
-        </p>
-        <h5>Unrestricted Resource Consumption:</h5>
-        <p>
-            The API retrieves all matching products from the database based on the search query without any restrictions on the result size.
-        </p>
-        <h5>Attack Scenario:</h5>
+  <div class="col-3 px-3 bg-light position-fixed" id="sticky-sidebar">
+      <img style="max-width: 100%" src="/logo.png" alt="apigoat"> 
+      <nav>
+        <a href="/" aria-expanded="false" id="owasp10_2023"
+          style="padding: 20% 10% 10 10">
+          <i class="fas fa-flag"></i>
+          OWASP API TOP 10 2023
+        </a>
 
-        <ol>
-            <li>Attacker Preparation: An attacker, Mallory, wants to disrupt the e-commerce platform.</li>
-            <li>Crafting Malicious Request: Mallory crafts a search query that will return a massive number of products, potentially the entire product database.</li>
-            <li>Resource Exhaustion: Mallory sends the malicious request repeatedly using automated scripts or bots. This overwhelms the server with a large amount of data processing, database queries, and bandwidth usage.thorized Access: Eve can then construct a URL like GET /files/{bobFileID}. If the Broken Object Level Authorization is present, Eve can download Bob's files without any authorization checks.</li>
-        </ol>
-        <h5>Impact:</h5>
-        <p>
-            The e-commerce platform's server resources become overloaded, causing the website to slow down or become unresponsive for legitimate users. This can lead to a Denial-of-Service (DoS) attack, hindering customer experience and potentially causing financial losses.        </p>
-        <h5>Mitigation:</h5>
-        <p>
-            Implement limits on the number of products returned in search results. This can be achieved through pagination, allowing users to browse results in smaller chunks.
-            Validate and sanitize user-provided search queries to prevent manipulation attempts.
-            Monitor API usage for suspicious activity and consider implementing rate limiting to throttle excessive requests from a single source.
-        </p> 
+
+        <ul class="list-sidebar bg-default" id="OWASP10_2023">
+          <li>
+            <a href="api1" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API1:<br> Broken Object Level Authorization
+            </a>
+          </li>
+          <li>
+            <a href="api2" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API2:<br> Broken Authentication
+            </a>
+          </li>
+          <li>
+            <a href="/api3" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API3:<br> Broken Object Property Level Authorization
+            </a>
+          </li>
+          <li>
+            <a href="/api4" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API4:<br> Unrestricted Resource Consumption
+            </a>
+          </li>
+          <li>
+            <a href="/api5" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API5:<br> Broken Function Level Authorization
+            </a>
+          </li>
+          <li>
+            <a href="/api6" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API6:<br> Broken Function Level Authorization
+            </a>
+          </li>
+          <li>
+            <a href="/api7" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API7:<br> Server-Side Request Forgery
+            </a>
+          </li>
+          <li>
+            <a href="/api8" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API8:<br> Security Misconfiguration
+            </a>
+          </li>
+          <li>
+            <a href="/api9" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API9:<br> Improper Inventory Management
+            </a>
+          </li>
+          <li>
+            <a href="/api10" class="sidebar-list-items">
+              <i class="fas fa-bug"></i>
+              API10:<br> Unsafe Consumption of APIs
+            </a>
+
+        </ul>
+      </nav>
     </div>
 
+        <div class="col offset-3" id="main">
+
+
+          <h1>API4:2023 - Unrestricted Resource Consumption</h1>
+          <hr>
+          <p>
+            Satisfying API requests requires resources such as network bandwidth, CPU, memory, and storage. Other
+            resources such as emails/SMS/phone calls or biometrics validation are made available by service providers
+            via API integrations, and paid for per request. Successful attacks can lead to Denial of Service or an
+            increase of operational costs.
+          </p>
+
+
+          <div class="container-fluid bg-light">
+            <h2>LAB Scenario</h2>
+
+            <div style="float: right;margin: 30px;" class="btn-container">
+              <a href="http://localhost:8004" class="btn btn-primary">API 4</a>
+            </div>
+            <hr>
+            <h5>Context:</h5>
+            <p>
+              An e-commerce platform offers an API endpoint to search for products: GET /products?search={query}
+              The API allows users to specify search parameters like query text and filters.
+              There's no limit on the number of products returned in the search results.
+              Pagination (splitting results into pages) is not implemented.
+            </p>
+            <h5>Unrestricted Resource Consumption:</h5>
+            <p>
+              The API retrieves all matching products from the database based on the search query without any
+              restrictions on the result size.
+            </p>
+            <h5>Attack Scenario:</h5>
+
+            <ol>
+              <li>Attacker Preparation: An attacker, Mallory, wants to disrupt a fruiterer e-commerce platform.</li>
+              <li>Crafting Malicious Request: Mallory crafts a search query that will return a massive number of
+                products, potentially the entire product database.</li>
+              <li>Resource Exhaustion: Mallory sends the malicious request repeatedly using automated scripts or bots.
+                This overwhelms the server with a large amount of data processing, database queries, and bandwidth
+                usage.thorized Access: Eve can then construct a URL like GET /products/{products}. If the Broken Object
+                Level Authorization is present, Eve can download Bob's files without any authorization checks.</li>
+            </ol>
+            <h5>Impact:</h5>
+            <p>
+              The e-commerce platform's server resources become overloaded, causing the website to slow down or become
+              unresponsive for legitimate users. This can lead to a Denial-of-Service (DoS) attack, hindering customer
+              experience and potentially causing financial losses.
+            </p>
+
+          </div>
+
+          <div class="container-fluid bg-light">
+            <h2>Mitigation</h2>
+            <hr>
+            <ul>
+              <li>
+                <p>
+                  Implement limits on the number of products returned in search results. This can be achieved through pagination, allowing users to browse results in smaller chunks.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Validate and sanitize user-provided search queries to prevent manipulation attempts.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Monitor API usage for suspicious activity and consider implementing rate limiting to throttle excessive requests from a single source.
+                </p>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
+
 </html>
