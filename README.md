@@ -28,11 +28,6 @@ Enter the string used to connect to the database you opened on the mongodb atlas
 
 You can run the application by running the appropriate start file (ps1 for windows, sh for linux) according to your system (windows/linux).
 
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * [nodejs](https://nodejs.org/en/download/package-manager) - The runtime enviorment
