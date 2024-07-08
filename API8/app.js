@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const path = require('path');
-
+const cors = require('cors');
 const dotenv = require("dotenv");
 
 dotenv.config({ path:"../config.env" });
@@ -10,6 +10,9 @@ const mongose = require('mongoose');
 mongose.connect(process.env.mongoDBURL);
 
 const app = express();
+
+// Permissive CORS policy (allowing all origins - BAD!)
+app.use(cors());
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

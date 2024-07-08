@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const https = require('https');
 
+// index endpoint
 router.get('/', (req, res, next) => {
     res.status(200);
     res.json({
