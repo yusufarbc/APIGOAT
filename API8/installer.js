@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const p1 = { username: "usernamdsdsae", name: "user1", email: "usedfsfsdr@test.com", id:5 }
+const p1 = { username: "username", name: "user1", email: "usedfsfsdr@test.com", id:5 }
 const  p2 = { username: "admin", name: "jane", email:"jane@test.com", id:2 }
 const  p3 = { username: "user", name: "johny", email:"johny@test.com", id:3 }
 const  p4 = { username: "account", name: "account", email:"account@test.com", id:4 }
