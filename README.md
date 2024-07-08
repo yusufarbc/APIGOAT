@@ -47,4 +47,4 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 ## License
 
-This project is licensed under the GNU License
+This project is licensed under the GNU General Public License (GPL) License
