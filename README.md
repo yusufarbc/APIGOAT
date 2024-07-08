@@ -2,8 +2,8 @@
  A RESTful API contains OWASP TOP 10 2023 vulnerabilities
  Developed by OWASP Bursa Technical University Student Chapter
 
-![APIGOAT](https://github.com/OWASP-BURSA-TECHNICAL-UNIVERSITY/APIGOAT/assets/77548038/bb97a77f-8aa6-47c7-b9ee-60ec2f08bcaa)
 
+![2023](https://github.com/OWASP-BURSA-TECHNICAL-UNIVERSITY/APIGOAT/assets/77548038/c3ce96e5-9dac-4d95-ae1e-6a48456fe141)
 
  
 
