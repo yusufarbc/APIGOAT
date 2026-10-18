@@ -4,14 +4,14 @@
 
 ### A Deliberately Vulnerable RESTful API for Security Training
 
-[![Docker Hub](https://img.shields.io/docker/pulls/yusufarbc/apigoat)](https://hub.docker.com/r/yusufarbc/apigoat)
+[![Docker Hub](https://img.shields.io/docker/pulls/ytalharabaci/apigoat)](https://hub.docker.com/r/ytalharabaci/apigoat)
 [![OWASP](https://img.shields.io/badge/OWASP-API%20Top%2010%202023-red)](https://owasp.org/www-project-api-security/)
 [![Node.js](https://img.shields.io/badge/node.js-18-green?logo=node.js)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
 
 **Educational platform showcasing OWASP API Security Top 10 (2023) vulnerabilities**
 
-[Quick Start](#-quick-start) • [Vulnerabilities](#-vulnerabilities) • [Learning Guide](#-learning-guide) • [Docker Hub](https://hub.docker.com/r/yusufarbc/apigoat)
+[Quick Start](#-quick-start) • [Vulnerabilities](#-vulnerabilities) • [Learning Guide](#-learning-guide) • [Docker Hub](https://hub.docker.com/r/ytalharabaci/apigoat)
 
 </div>
 
@@ -39,7 +39,7 @@ APIGOAT is a deliberately vulnerable RESTful API designed for **penetration test
 ### Option 1: Pull from Docker Hub (Recommended)
 
 ```bash
-docker run -d --name apigoat -p 8000-8010:8000-8010 -p 27017:27017 yusufarbc/apigoat:latest
+docker run -d --name apigoat -p 8000-8010:8000-8010 -p 27017:27017 ytalharabaci/apigoat:latest
 ```
 
 Access at **http://localhost:8000** (ready in 10-15 seconds)
@@ -53,7 +53,7 @@ Access at **http://localhost:8000** (ready in 10-15 seconds)
 
 ```bash
 # Clone repository
-git clone https://github.com/yusufarbc/apigoat.git
+git clone https://github.com/ytalharabaci/apigoat.git
 cd apigoat
 
 # Windows
@@ -197,7 +197,7 @@ docker restart apigoat           # Restart
 **Safe Usage:**
 ```bash
 # ✅ Good: Local isolated environment
-docker run -d --name apigoat -p 8000-8010:8000-8010 -p 27017:27017 yusufarbc/apigoat
+docker run -d --name apigoat -p 8000-8010:8000-8010 -p 27017:27017 ytalharabaci/apigoat
 
 # ❌ Bad: Exposing to public network
 docker run -d --name apigoat -p 0.0.0.0:8000:8000 ... # DON'T!
@@ -233,7 +233,7 @@ netstat -ano | findstr :8000  # Windows
 lsof -i :8000                 # Linux/Mac
 
 # Use different ports
-docker run -d -p 9000-9010:8000-8010 ... yusufarbc/apigoat
+docker run -d -p 9000-9010:8000-8010 ... ytalharabaci/apigoat
 ```
 
 **Container issues:**
@@ -292,7 +292,7 @@ app.use(compression());
 
 Contributions welcome! Ways to help:
 
-- 🐛 Report bugs via [GitHub Issues](https://github.com/yusufarbc/apigoat/issues)
+- 🐛 Report bugs via [GitHub Issues](https://github.com/ytalharabaci/apigoat/issues)
 - 💡 Suggest new vulnerability patterns
 - 📝 Improve documentation
 - 🔒 Add OWASP coverage examples
@@ -342,9 +342,9 @@ See [LICENSE](LICENSE) for full details.
 **Yusuf Talha Arabacı**  
 *Cyber Security Engineer*
 
-[![GitHub](https://img.shields.io/badge/GitHub-yusufarbc-181717?logo=github)](https://github.com/yusufarbc)
+[![GitHub](https://img.shields.io/badge/GitHub-ytalharabaci-181717?logo=github)](https://github.com/ytalharabaci)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?logo=linkedin)](https://linkedin.com/in/yusufarbc)
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-apigoat-2496ED?logo=docker)](https://hub.docker.com/r/yusufarbc/apigoat)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-apigoat-2496ED?logo=docker)](https://hub.docker.com/r/ytalharabaci/apigoat)
 
 *Originally initiated under OWASP Bursa Technical University Student Chapter*
 
@@ -362,10 +362,10 @@ See [LICENSE](LICENSE) for full details.
 
 ## 📞 Support
 
-- 🐛 [GitHub Issues](https://github.com/yusufarbc/apigoat/issues)
-- 💬 [GitHub Discussions](https://github.com/yusufarbc/apigoat/discussions)
+- 🐛 [GitHub Issues](https://github.com/ytalharabaci/apigoat/issues)
+- 💬 [GitHub Discussions](https://github.com/ytalharabaci/apigoat/discussions)
 - 📧 Email via GitHub profile
-- 🐳 [Docker Hub](https://hub.docker.com/r/yusufarbc/apigoat)
+- 🐳 [Docker Hub](https://hub.docker.com/r/ytalharabaci/apigoat)
 
 ---
 
@@ -373,7 +373,7 @@ See [LICENSE](LICENSE) for full details.
 
 **⭐ If this helped you learn API security, please star the repo! ⭐**
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yusufarbc/apigoat&type=Date)](https://star-history.com/#yusufarbc/apigoat&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=ytalharabaci/apigoat&type=Date)](https://star-history.com/#ytalharabaci/apigoat&Date)
 
 ---
 

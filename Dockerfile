@@ -45,7 +45,7 @@ RUN cd API1 && npm install --production && \
 
 # Copy and set permissions for startup script
 COPY docker-start-simple.sh /app/docker-start.sh
-RUN chmod +x /app/docker-start.sh && mkdir -p /var/log
+RUN sed -i 's/\r$//' /app/docker-start.sh && chmod +x /app/docker-start.sh && mkdir -p /var/log
 
 # Expose all ports (APIs + MongoDB)
 EXPOSE 8000 8001 8002 8003 8004 8005 8006 8007 8008 8009 8010 27017

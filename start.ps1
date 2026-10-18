@@ -45,8 +45,8 @@ if (docker ps -a --format "{{.Names}}" | Select-String -Pattern "apigoat-all" -Q
 # Stop and remove existing containers (clean slate)
 Write-Host ""
 Write-Host "[3/3] Building single lab image..." -ForegroundColor Yellow
-Write-Host "  → docker build -t yusufarbc/apigoat:all ." -ForegroundColor Cyan
-docker build -t yusufarbc/apigoat:all .
+Write-Host "  → docker build -t ytalharabaci/apigoat:latest -t ytalharabaci/apigoat:all ." -ForegroundColor Cyan
+docker build -t ytalharabaci/apigoat:latest -t ytalharabaci/apigoat:all .
 if ($LASTEXITCODE -ne 0) {
     Write-Host "  ✗ Build failed" -ForegroundColor Red
     exit 1
@@ -54,7 +54,7 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "  ✓ Image built" -ForegroundColor Green
 
 Write-Host "Starting container (ports 8000-8010 + 27017)..." -ForegroundColor Yellow
-docker run -d --name apigoat-all -p 8000:8000 -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8004:8004 -p 8005:8005 -p 8006:8006 -p 8007:8007 -p 8008:8008 -p 8009:8009 -p 8010:8010 -p 27017:27017 yusufarbc/apigoat:all
+docker run -d --name apigoat-all -p 8000:8000 -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8004:8004 -p 8005:8005 -p 8006:8006 -p 8007:8007 -p 8008:8008 -p 8009:8009 -p 8010:8010 -p 27017:27017 ytalharabaci/apigoat:latest
 if ($LASTEXITCODE -ne 0) {
     Write-Host "  ✗ Container start failed" -ForegroundColor Red
     exit 1
@@ -90,7 +90,7 @@ if (docker ps --format "{{.Names}}" | Select-String -Pattern "apigoat-all" -Quie
     Write-Host "  → View logs:      docker logs -f apigoat-all" -ForegroundColor Yellow
     Write-Host "  → Stop:           docker stop apigoat-all" -ForegroundColor Yellow
     Write-Host "  → Remove:         docker rm apigoat-all" -ForegroundColor Yellow
-    Write-Host "  → Rebuild:        docker build -t yusufarbc/apigoat:all ." -ForegroundColor Yellow
+    Write-Host "  → Rebuild:        docker build -t ytalharabaci/apigoat:latest ." -ForegroundColor Yellow
     Write-Host ""
     Write-Host "Opening web interface in browser..." -ForegroundColor Cyan
     Start-Sleep -Seconds 3
